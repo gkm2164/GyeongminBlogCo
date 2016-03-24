@@ -5,9 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-/**
- * Created by USER on 2016-03-24.
- */
 @Entity
 @Table(name = "RCommentPost")
 @Getter @Setter

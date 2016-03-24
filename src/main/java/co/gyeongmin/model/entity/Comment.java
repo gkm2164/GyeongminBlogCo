@@ -9,9 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-/**
- * Created by USER on 2016-03-24.
- */
 @Entity
 @Table(name = "Comments")
 @Getter @Setter

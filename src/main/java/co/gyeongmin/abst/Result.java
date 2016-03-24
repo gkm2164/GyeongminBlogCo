@@ -1,7 +1,12 @@
 package co.gyeongmin.abst;
 
-/**
- * Created by gyeongmin on 3/24/16.
- */
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Result {
+    private boolean success;
 }

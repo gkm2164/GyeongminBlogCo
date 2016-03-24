@@ -8,9 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Created by USER on 2016-03-24.
- */
 @Entity
 @Table(name = "Users")
 @Getter @Setter
