@@ -30,7 +30,7 @@ public class Post {
     )
     private Integer id;
 
-    private String text;
+    private String title;
 
     private String content;
 

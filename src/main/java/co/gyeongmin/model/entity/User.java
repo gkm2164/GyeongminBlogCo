@@ -37,7 +37,6 @@ public class User {
     private UserType userType;
 
     @OneToMany
-    @ManyToOne
     @JoinTable(
             name = "RPostUser",
             joinColumns = @JoinColumn(name = "UserID", referencedColumnName = "ID"),
@@ -46,7 +45,6 @@ public class User {
     private List<Post> posts;
 
     @OneToMany
-    @ManyToOne
     @JoinTable(
             name = "RCommentUser",
             joinColumns = @JoinColumn(name = "UserID", referencedColumnName = "ID"),

@@ -1,0 +1,18 @@
+<form xmlns:th="http://www.thymeleaf.org"
+      th:fragment="command(keyword)"
+      th:method="post" th:action="@{/post.do/{cmd}(cmd=${keyword})}" th:object="${post}">
+  <div>
+    <label th:for="*{title}" th:text="Title"></label>
+    <input th:type="text" th:field="*{title}" />
+  </div>
+  <div>
+    <label th:for="*{content}" th:text="Content"></label>
+    <textarea th:field="*{content}"></textarea>
+  </div>
+
+  <input th:type="hidden" th:field="*{id}" />
+  <input th:type="hidden" th:field="*{createdTime}" />
+  <input th:type="hidden" th:field="*{modifiedTime}" />
+
+  <button th:type="submit">Submit</button>
+</form>
