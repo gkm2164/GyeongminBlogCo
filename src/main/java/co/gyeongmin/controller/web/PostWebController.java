@@ -1,6 +1,7 @@
 package co.gyeongmin.controller.web;
 
 import co.gyeongmin.model.entity.Post;
+import co.gyeongmin.model.enumtype.PostState;
 import co.gyeongmin.model.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,13 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-/**
- * Created by gyeongmin on 3/24/16.
- */
 @Controller
 @RequestMapping("/post")
 public class PostWebController {
@@ -31,6 +28,7 @@ public class PostWebController {
         Timestamp now = Timestamp.from(Instant.now());
 
         Post post = new Post();
+        post.setStatus(PostState.POST);
         post.setCreatedTime(now);
         post.setModifiedTime(now);
         model.addAttribute("post", post);

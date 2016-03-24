@@ -10,9 +10,6 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
-/**
- * Created by USER on 2016-03-24.
- */
 @Entity
 @Table(name = "Posts")
 @Getter @Setter

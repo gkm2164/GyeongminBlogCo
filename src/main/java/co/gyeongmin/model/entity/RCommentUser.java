@@ -2,9 +2,6 @@ package co.gyeongmin.model.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by USER on 2016-03-24.
- */
 @Entity
 @Table(name = "RCommentUser")
 public class RCommentUser {
