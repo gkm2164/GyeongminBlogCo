@@ -1,0 +1,6 @@
+body {
+  width: 1024px;
+}
+body div#main-content {
+  border: 1px solid;
+}

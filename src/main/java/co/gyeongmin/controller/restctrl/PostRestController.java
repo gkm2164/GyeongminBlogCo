@@ -1,4 +1,4 @@
-package co.gyeongmin.controller.rest;
+package co.gyeongmin.controller.restctrl;
 
 import co.gyeongmin.abst.CRUDRestController;
 import co.gyeongmin.model.entity.Post;

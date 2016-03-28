@@ -1,11 +1,11 @@
-<!DOCTYPE html>
 <div xmlns:th="http://www.thymeleaf.org">
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Title</th>
         <th>Author</th>
         <th>Posted Time</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody th:each="post : ${posts}">
@@ -13,7 +13,9 @@
         <td th:text="${post.title}">Title</td>
         <td th:text="${post.user.userName}">User Name</td>
         <td th:text="${post.createdTime}">Created Time</td>
+        <td><a th:href="@{/post/{id}/show(id=${post.id})}">Show</a></td>
       </tr>
     </tbody>
+    <tfoot id="post-list"></tfoot>
   </table>
 </div>

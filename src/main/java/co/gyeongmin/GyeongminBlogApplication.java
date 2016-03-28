@@ -9,4 +9,5 @@ public class GyeongminBlogApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GyeongminBlogApplication.class, args);
 	}
+
 }

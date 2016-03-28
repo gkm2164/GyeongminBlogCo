@@ -1,4 +1,4 @@
-package co.gyeongmin.controller.rest;
+package co.gyeongmin.controller.restctrl;
 
 import co.gyeongmin.abst.CRUDRestController;
 import co.gyeongmin.model.entity.Comment;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/comment.do")
+@RequestMapping("comment.do")
 public class CommentRestRepository extends CRUDRestController<Comment, Integer, CommentRepository> {
     @Autowired
     public CommentRestRepository(CommentRepository repository) {

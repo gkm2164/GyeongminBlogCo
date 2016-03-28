@@ -1,22 +1,26 @@
 package co.gyeongmin.abst;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by gyeongmin on 3/24/16.
+ * Created by USER on 2016-03-25.
  */
 public class PageDescription {
-
     private final String view;
     private final String title;
-    private List<String> css;
-    private List<String> headerJS;
-    private List<String> footerJS;
+    private final List<String> cssList;
+    private final List<String> hjsList;
+    private final List<String> fjsList;
 
-    public PageDescription(String view, String title, PageFiller pf) {
+    public PageDescription(String view, String title, PageResourceFiller prf) {
         this.view = view;
         this.title = title;
-        pf.fillPage(css, headerJS, footerJS);
+        this.cssList = new ArrayList<>();
+        this.hjsList = new ArrayList<>();
+        this.fjsList = new ArrayList<>();
+
+        prf.fill(cssList, hjsList, fjsList);
     }
 
     public String getView() {
@@ -27,27 +31,15 @@ public class PageDescription {
         return title;
     }
 
-    public List<String> getCss() {
-        return css;
+    public List<String> getCssList() {
+        return cssList;
     }
 
-    public void setCss(List<String> css) {
-        this.css = css;
+    public List<String> getHjsList() {
+        return hjsList;
     }
 
-    public List<String> getHeaderJS() {
-        return headerJS;
-    }
-
-    public void setHeaderJS(List<String> headerJS) {
-        this.headerJS = headerJS;
-    }
-
-    public List<String> getFooterJS() {
-        return footerJS;
-    }
-
-    public void setFooterJS(List<String> footerJS) {
-        this.footerJS = footerJS;
+    public List<String> getFjsList() {
+        return fjsList;
     }
 }
