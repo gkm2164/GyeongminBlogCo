@@ -1,4 +1,5 @@
 <div id="main-content" xmlns:th="http://www.thymeleaf.org">
+  <p th:text="'Session' + ${UserID}"></p>
   <h1 th:text="${post.title}">Text</h1>
   <div id="contents" th:text="${post.content}"></div>
   <!-- Comment area -->
