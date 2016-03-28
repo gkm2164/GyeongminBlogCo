@@ -22,7 +22,10 @@ public class AuthWebController extends LayoutController {
         PageDescription pdesc = new PageDescription(
                 "auth/login",
                 "Login Page",
-                (css, y, z) -> css.add("/css/auth/auth.css")
+                (css, hjs, z) -> {
+                    hjs.add("/js/auth.js");
+                    css.add("/css/auth/auth.css");
+                }
         );
         return layoutCall(pdesc, model);
     }
