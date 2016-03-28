@@ -1,5 +1,7 @@
 package co.gyeongmin.controller.web;
 
+import co.gyeongmin.abst.LayoutController;
+import co.gyeongmin.abst.PageDescription;
 import co.gyeongmin.model.entity.Post;
 import co.gyeongmin.model.enumtype.PostState;
 import co.gyeongmin.model.repository.PostRepository;
@@ -15,12 +17,16 @@ import java.time.Instant;
 
 @Controller
 @RequestMapping("/post")
-public class PostWebController {
+public class PostWebController extends LayoutController {
     private @Autowired PostRepository postRepository;
     @RequestMapping("/")
     public String postIndex(Model model) {
         model.addAttribute("posts", postRepository.findAll());
-        return "post/list";
+        PageDescription pdesc = new PageDescription(
+                "post/list" ,"Post list",
+                (x, y, z) -> {}
+        );
+        return layoutCall(pdesc, model);
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -32,18 +38,33 @@ public class PostWebController {
         post.setCreatedTime(now);
         post.setModifiedTime(now);
         model.addAttribute("post", post);
-        return "post/new";
+        PageDescription pdesc = new PageDescription(
+                "post/new" ,"New Post",
+                (x, y, z) -> {}
+        );
+        return layoutCall(pdesc, model);
     }
 
     @RequestMapping("/{id}/show")
     public String showPost(@PathVariable Integer id, Model model){
-        model.addAttribute("post", postRepository.findOne(id));
-        return "post/show";
+        Post post = postRepository.findOne(id);
+        model.addAttribute("post", post);
+        PageDescription pdesc = new PageDescription(
+                "post/show", post.getTitle(),
+                (x, y, z) -> {}
+        );
+        return layoutCall(pdesc, model);
     }
 
     @RequestMapping("/{id}/edit")
     public String editPost(@PathVariable Integer id, Model model) {
-        return "post/edit";
+        Post post = postRepository.findOne(id);
+        model.addAttribute("post", post);
+        PageDescription pdesc = new PageDescription(
+                "post/edit", post.getTitle() + " Edit",
+                (x, y, z) -> {}
+        );
+        return layoutCall(pdesc, model);
     }
 
     @RequestMapping("/{id}/remove")

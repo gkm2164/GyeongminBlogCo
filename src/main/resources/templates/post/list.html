@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <body>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Posted Time</th>
-        </tr>
-      </thead>
-      <tbody th:each="post : ${posts}">
-        <tr>
-          <td th:text="${post.title}">Title</td>
-          <td th:text="${post.user.userName}">User Name</td>
-          <td th:text="${post.createdTime}">Created Time</td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
-</html>
+<div xmlns:th="http://www.thymeleaf.org">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Posted Time</th>
+      </tr>
+    </thead>
+    <tbody th:each="post : ${posts}">
+      <tr>
+        <td th:text="${post.title}">Title</td>
+        <td th:text="${post.user.userName}">User Name</td>
+        <td th:text="${post.createdTime}">Created Time</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
