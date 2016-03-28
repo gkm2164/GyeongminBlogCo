@@ -2,7 +2,9 @@ package co.gyeongmin.controller.web;
 
 import co.gyeongmin.abst.LayoutController;
 import co.gyeongmin.abst.PageDescription;
+import co.gyeongmin.model.entity.Comment;
 import co.gyeongmin.model.entity.Post;
+import co.gyeongmin.model.enumtype.CommentState;
 import co.gyeongmin.model.enumtype.PostState;
 import co.gyeongmin.model.repository.PostRepository;
 import co.gyeongmin.model.repository.UserRepository;
@@ -51,13 +53,33 @@ public class PostWebController extends LayoutController {
 
     @RequestMapping("/{id}/show")
     public String showPost(@PathVariable Integer id, Model model){
-        model.addAttribute("post", postRepository.findOne(id));
-        return "post/show";
+        Post post = postRepository.findOne(id);
+
+
+        Comment comment = new Comment();
+        comment.setUser(userRepository.findAll().get(0));
+        comment.setPost(post);
+        comment.setStatus(CommentState.POST);
+        comment.setCreatedTime(Timestamp.from(Instant.now()));
+
+        model.addAttribute("post", post);
+        model.addAttribute("newComment", comment);
+
+        PageDescription pdesc = new PageDescription(
+                "post/show", "Show post",
+                (x, y, z) -> {}
+        );
+        return layoutCall(pdesc, model);
     }
 
     @RequestMapping("/{id}/edit")
     public String editPost(@PathVariable Integer id, Model model) {
-        return "post/edit";
+        model.addAttribute("post", postRepository.findOne(id));
+        PageDescription pdesc = new PageDescription(
+                "post/edit", "Edit post",
+                (x, y, z) -> {}
+        );
+        return layoutCall(pdesc, model);
     }
 
     @RequestMapping("/{id}/remove")

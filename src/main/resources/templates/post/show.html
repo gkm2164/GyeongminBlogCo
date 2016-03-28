@@ -1,0 +1,29 @@
+<div id="main-content" xmlns:th="http://www.thymeleaf.org">
+  <h1 th:text="${post.title}">Text</h1>
+  <div id="contents" th:text="${post.content}"></div>
+  <!-- Comment area -->
+  <div id="comments-area" class="panel panel-default">
+    <h2>Comments</h2>
+    <div th:each="comment : ${post.comments}">
+      <div class="single-comment panel panel-default" th:id="'comment-' + ${comment.id}">
+        <div class="panel-heading">
+          <p th:text="${comment.user.userName}">User Name</p>
+          <p th:text="${comment.createdTime}">Created Time</p>
+        </div>
+        <div class="panel-body" th:text="${comment.content}">Content</div>
+      </div>
+    </div>
+  </div>
+  <div id="new-comment" class="panel panel-default">
+    <form th:action="@{/comment.do/new}" th:object="${newComment}" th:method="post">
+      <input th:field="*{user.id}" th:type="hidden" />
+      <input th:field="*{post.id}" th:type="hidden" />
+      <input th:field="*{id}" th:type="hidden" />
+      <input th:field="*{status}" th:type="hidden" />
+      <input th:field="*{createdTime}" th:type="hidden" />
+
+      <textarea th:field="*{content}"></textarea>
+      <button type="submit">Write</button>
+    </form>
+  </div>
+</div>
