@@ -1,0 +1,15 @@
+<div xmlns:th="http://www.thymeleaf.org">
+  <div id="login-box">
+    <form id="auth" th:object="${AUTH}">
+      <div>
+        <label th:field="*{id}">ID</label>
+        <input class="form-control" th:field="*{id}" th:type="text" />
+      </div>
+      <div>
+        <label th:field="*{password}">Password</label>
+        <input class="form-control" th:field="*{password}" th:type="password" />
+      </div>
+      <button class="btn btn-default" type="button" onclick="doLogin()">Login</button>
+    </form>
+  </div>
+</div>

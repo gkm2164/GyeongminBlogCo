@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -52,9 +53,8 @@ public class PostWebController extends LayoutController {
     }
 
     @RequestMapping("/{id}/show")
-    public String showPost(@PathVariable Integer id, Model model){
+    public String showPost(@PathVariable Integer id, HttpSession session, Model model){
         Post post = postRepository.findOne(id);
-
 
         Comment comment = new Comment();
         comment.setUser(userRepository.findAll().get(0));
@@ -62,6 +62,7 @@ public class PostWebController extends LayoutController {
         comment.setStatus(CommentState.POST);
         comment.setCreatedTime(Timestamp.from(Instant.now()));
 
+        model.addAttribute("UserID", session.getAttribute("UserID"));
         model.addAttribute("post", post);
         model.addAttribute("newComment", comment);
 
@@ -80,10 +81,5 @@ public class PostWebController extends LayoutController {
                 (x, y, z) -> {}
         );
         return layoutCall(pdesc, model);
-    }
-
-    @RequestMapping("/{id}/remove")
-    public String removePost(@PathVariable Integer id, Model model) {
-        return "redirect:/post";
     }
 }
