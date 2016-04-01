@@ -1,11 +1,10 @@
 package co.gyeongmin.controller.restctrl;
 
 import co.gyeongmin.abst.Result;
+import co.gyeongmin.controller.auth.entity.AuthObject;
+import co.gyeongmin.controller.auth.manager.AuthManager;
 import co.gyeongmin.model.entity.User;
 import co.gyeongmin.model.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,7 +35,7 @@ public class AuthRestRepository {
             return result;
         }
 
-        httpSession.setAttribute("UserID", user.getId());
+        AuthManager.createSession(user.getId(), authObject, httpSession);
         result.setSuccess(true);
         return result;
     }
@@ -45,21 +44,13 @@ public class AuthRestRepository {
     public Result doLogout(HttpSession httpSession) {
         Result result = new Result();
 
-        if (httpSession.getAttribute("UserID") != null) {
-            httpSession.removeAttribute("UserID");
+        if (AuthManager.isLoggedIn(httpSession)) {
+            AuthManager.destroySession(httpSession);
             result.setSuccess(true);
         } else {
             result.setSuccess(false);
         }
 
         return result;
-    }
-
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class AuthObject {
-        private String id;
-        private String password;
     }
 }

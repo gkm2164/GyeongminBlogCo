@@ -91,6 +91,17 @@
 					</resources>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<appName>spring-boot-gyeongmin</appName>
+					<processTypes>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* co.gyeongmin.GyeongminBlogApplication</web>
+					</processTypes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	
