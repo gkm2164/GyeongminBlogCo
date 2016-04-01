@@ -2,6 +2,7 @@ package co.gyeongmin.controller.web;
 
 import co.gyeongmin.abst.LayoutController;
 import co.gyeongmin.abst.PageDescription;
+import co.gyeongmin.controller.web.exception.LackOfPermissionException;
 import co.gyeongmin.model.entity.Comment;
 import co.gyeongmin.model.entity.Post;
 import co.gyeongmin.model.enumtype.CommentState;
@@ -36,11 +37,15 @@ public class PostWebController extends LayoutController {
     }
 
     @RequestMapping("new")
-    public String newPost(Model model) {
+    public String newPost(HttpSession session, Model model) throws LackOfPermissionException {
+        if (session.getAttribute("UserID") == null) {
+            throw new LackOfPermissionException("Posting new post is not allowed");
+        }
+        Integer userId = (Integer)session.getAttribute("UserID");
         Timestamp now = Timestamp.from(Instant.now());
 
         Post post = new Post();
-        post.setUser(userRepository.findOne(0));
+        post.setUser(userRepository.findOne(userId));
         post.setStatus(PostState.POST);
         post.setCreatedTime(now);
         post.setModifiedTime(now);

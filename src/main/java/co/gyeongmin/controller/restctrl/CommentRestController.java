@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("comment.do")
-public class CommentRestRepository extends CRUDRestController<Comment, Integer, CommentRepository> {
+public class CommentRestController extends CRUDRestController<Comment, Integer, CommentRepository> {
     @Autowired
-    public CommentRestRepository(CommentRepository repository) {
+    public CommentRestController(CommentRepository repository) {
         super(repository);
     }
 }

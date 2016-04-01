@@ -3,6 +3,9 @@ package co.gyeongmin.controller.restctrl;
 import co.gyeongmin.abst.Result;
 import co.gyeongmin.model.entity.User;
 import co.gyeongmin.model.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,20 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by gyeongmin on 3/28/16.
- */
 @RestController
 @RequestMapping("/auth.do")
 public class AuthRestRepository {
-    @Autowired UserRepository ur;
+    @Autowired UserRepository userRepository;
 
     @RequestMapping("/login")
     public Result doLogin(@ModelAttribute AuthObject authObject,
                           BindingResult bindingResult,
                           HttpSession httpSession) {
         Result result = new Result();
-        User user = ur.findByEmail(authObject.getId());
+        User user = userRepository.findByEmail(authObject.getId());
 
         if (user == null) {
             result.setSuccess(false);
@@ -53,5 +53,13 @@ public class AuthRestRepository {
         }
 
         return result;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class AuthObject {
+        private String id;
+        private String password;
     }
 }
