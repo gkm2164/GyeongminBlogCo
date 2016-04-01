@@ -2,6 +2,7 @@ package co.gyeongmin.controller.web;
 
 import co.gyeongmin.abst.LayoutController;
 import co.gyeongmin.abst.PageDescription;
+import co.gyeongmin.controller.auth.manager.AuthManager;
 import co.gyeongmin.controller.web.exception.LackOfPermissionException;
 import co.gyeongmin.model.entity.Comment;
 import co.gyeongmin.model.entity.Post;
@@ -41,7 +42,7 @@ public class PostWebController extends LayoutController {
         if (session.getAttribute("UserID") == null) {
             throw new LackOfPermissionException("Posting new post is not allowed");
         }
-        Integer userId = (Integer)session.getAttribute("UserID");
+        Integer userId = AuthManager.getUserID(session);
         Timestamp now = Timestamp.from(Instant.now());
 
         Post post = new Post();
@@ -67,7 +68,10 @@ public class PostWebController extends LayoutController {
         comment.setStatus(CommentState.POST);
         comment.setCreatedTime(Timestamp.from(Instant.now()));
 
-        model.addAttribute("UserID", session.getAttribute("UserID"));
+        Integer userId = AuthManager.getUserID(session);
+        if (userId != null) {
+            model.addAttribute("UserID", AuthManager.getUserID(session));
+        }
         model.addAttribute("post", post);
         model.addAttribute("newComment", comment);
 

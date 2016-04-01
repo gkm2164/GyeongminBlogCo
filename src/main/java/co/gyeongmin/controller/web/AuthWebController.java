@@ -2,7 +2,7 @@ package co.gyeongmin.controller.web;
 
 import co.gyeongmin.abst.LayoutController;
 import co.gyeongmin.abst.PageDescription;
-import co.gyeongmin.controller.restctrl.AuthRestRepository.AuthObject;
+import co.gyeongmin.controller.auth.entity.AuthObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
