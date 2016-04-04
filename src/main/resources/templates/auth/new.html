@@ -1,0 +1,23 @@
+<div xmlns:th="http://www.thymeleaf.org">
+  <form class="form-control" th:method="post" th:object="${user}" th:action="@{/user.do/new}" id="new-user">
+    <input class="form-control" th:field="*{id}" type="hidden" />
+    <input class="form-control" th:field="*{userType}" type="hidden" />
+    <div>
+      <label th:field="*{userName}">User name</label>
+      <input class="form-control" th:field="*{userName}" />
+    </div>
+    <div>
+      <label th:field="*{password}">Password</label>
+      <input class="form-control" th:field="*{password}" type="password" />
+    </div>
+    <div>
+      <label th:field="*{email}">Email</label>
+      <input class="form-control" th:field="*{email}" />
+    </div>
+    <div>
+      <label th:field="*{profile}">Profile</label>
+      <textarea class="form-control" th:field="*{profile}"></textarea>
+    </div>
+    <button type="submit">Post</button>
+  </form>
+</div>

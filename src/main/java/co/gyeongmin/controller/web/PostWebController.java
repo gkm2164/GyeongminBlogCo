@@ -39,7 +39,7 @@ public class PostWebController extends LayoutController {
 
     @RequestMapping("new")
     public String newPost(HttpSession session, Model model) throws LackOfPermissionException {
-        if (session.getAttribute("UserID") == null) {
+        if (!AuthManager.isLoggedIn(session)) {
             throw new LackOfPermissionException("Posting new post is not allowed");
         }
         Integer userId = AuthManager.getUserID(session);
