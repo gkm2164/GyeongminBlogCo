@@ -98,7 +98,7 @@
 				<configuration>
 					<appName>spring-boot-gyeongmin</appName>
 					<processTypes>
-						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* co.gyeongmin.GyeongminBlogApplication</web>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* -Dserver.port=$PORT co.gyeongmin.GyeongminBlogApplication</web>
 					</processTypes>
 				</configuration>
 			</plugin>
