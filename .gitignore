@@ -4,3 +4,5 @@
 /.idea/dataSources.xml
 /src/main/resources/static/css
 /.idea/workspace.xml
+/target
+/.mvn
